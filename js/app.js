@@ -1,31 +1,46 @@
-var marked = require('marked');
-
 var gui = require('nw.gui'),
-    win = gui.Window.get();
+win = gui.Window.get();
 
-var opt = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: true,
-  silent: false,
-  langPrefix: ''
-};
+var mdconf = require('./views/sequence-diagram/js/node_modules/mdconf');
 
-marked.setOptions(opt);
+function log(obj) {
+  console.log(JSON.stringify(obj, null, 2));
+}
 
-var renderer = new marked.Renderer();
+function parseSyntax(md) {
+/*
+# title
 
-var parse = function(src, options) {
-  options = options || opt;
-  return marked.parser(marked.lexer(src, options), options, renderer);
+- Andrew->China: Says Hello
+- Note right of China: China thinks\nabout it
+- China-->Andrew: How are you?
+- Andrew->>China: I am good thanks!
+ */
+
+}
+
+function clear() {
+  document.getElementById('diagram').innerHTML = '';
 }
 
 window.onload = function() {
-	win.on('update', function(md) {
-		
-	});
+  var raw, res;
+
+  win.on('update', function(md) {
+  	raw = mdconf(md);
+  	res = '';
+
+  	clear();
+
+  	_.each(raw, function(item, title) {
+  	  res += 'Title: '+ title +'\n';
+
+  	  _.each(item, function(desc, syntax) {
+  	  	res += syntax +': '+ desc +'\n';
+  	  });
+  	});
+
+	var diagram = Diagram.parse(res);
+	diagram.drawSVG("diagram", { theme: 'hand' });
+  });
 }
