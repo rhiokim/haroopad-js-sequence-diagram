@@ -2,20 +2,26 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Haroopad > Javascript Sequence diagram</title>
+        <title>Javascript Sequence diagram</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="bower_components/bootstrap/bootstrap/css/bootstrap.min.css">
+        <script src="bower_components/zepto/zepto.min.js"></script>
         <script src="bower_components/raphael/raphael-min.js"></script>
         <script src="bower_components/underscore/underscore-min.js"></script>
+        <script src="js/vendors/svginnerhtml.js"></script>
         <script src="js/vendors/js-sequence-diagram.js"></script>
+        <script src="js/vendors/canvg-1.3/rgbcolor.js"></script>
+        <script src="js/vendors/canvg-1.3/StackBlur.js"></script>
+        <script src="js/vendors/canvg-1.3/canvg.js"></script>
         <script src="js/app.js"></script>
     </head>
     <body>
-        <p>Hello world! This is HTML5 Boilerplate.</p>
         <div id="diagram"></div>
+        <a href="#" id="download">download</a>
+        <a href="#" id="canvg">svg to canvas</a>
+        <a href="#" id="png">get png</a>
+        <canvas id="canvas" width="1000px" height="600px"></canvas> 
     </body>
 </html>
